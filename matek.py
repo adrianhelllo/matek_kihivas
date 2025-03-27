@@ -21,8 +21,6 @@ oper_strs = {
 begin = input("Welcome to my game! I will think of a number, and your task will be to figure out that number from the given operations. Enter anything here when you're ready: ")
 playing = True
 
-starting_num = random.randint(MIN_START, MAX_OPERAND)
-
 def print_decision(operation: str, operand: int, turn: int):
     oper_str = oper_strs[operation]
     
@@ -38,8 +36,7 @@ def rand_oper(num: int, turn: int) -> int:
     return eval(f"{num}{operation}{operand}")
 
 
-
-def ind_turn():
+def ind_turn(start_num: int):
     user_diff = input("Choose your difficulty // [easy, medium, hard, nightmare]: ")
     
     while user_diff not in diff.keys():
@@ -48,16 +45,39 @@ def ind_turn():
 
     for turn in range(diff[user_diff]):
         if turn == 0:
-            turn_res = rand_oper(starting_num, turn)
+            turn_res = rand_oper(start_num, turn)
         else:
             turn_res = rand_oper(turn_res, turn)
+        print(turn_res)
 
-    print(f"The result of the operations is {turn_res}. Figure out the original number!")
-    return turn_res
+    print(f"The result of the operations is {turn_res:.2f}. Figure out the original number, time starts now!")
 
 
 def main():
-    pass
+    starting_num = random.randint(MIN_START, MAX_OPERAND)
+    print(starting_num)
+    start_time = time.time()
+    ind_turn(starting_num)
+    ans = int(input("Enter your answer here (num): "))
+    end_time = time.time()
+
+    print(f"You took {round(end_time - start_time)} seconds to answer.")
+    if starting_num - 0.5 <= ans <= starting_num + 0.5:
+        print("It seems that you have got it correct! Good job!")
+    else:
+        print("Unfortunately, your answer is wrong. Nice try, though!")
+            
+
+while playing:
+    main()
+
+    again = input("Would you like to play again [yes, no]: ")
+
+    if again == 'yes':
+        print("Got it. Initiating another round!")
+    elif again == 'no':
+        print("Sad to see you go! Thanks for playing, hope you enjoyed!")
+        playing = False
 
 
 
