@@ -29,7 +29,7 @@ def print_decision(operation: str, operand: int, turn: int):
 
 def rand_oper(num: int, turn: int) -> int:
     operation = random.choice(operations)
-    operand = random.randint(MIN_OPERAND, MAX_START)
+    operand = random.randint(MIN_OPERAND, MAX_OPERAND)
 
     print_decision(operation, operand, turn)
 
@@ -53,7 +53,7 @@ def ind_turn(start_num: int):
 
 
 def main():
-    starting_num = random.randint(MIN_START, MAX_OPERAND)
+    starting_num = random.randint(MIN_START, MAX_START)
     start_time = time.time()
     ind_turn(starting_num)
     ans = int(input("Enter your answer here (num): "))
