@@ -48,14 +48,12 @@ def ind_turn(start_num: int):
             turn_res = rand_oper(start_num, turn)
         else:
             turn_res = rand_oper(turn_res, turn)
-        print(turn_res)
 
     print(f"The result of the operations is {turn_res:.2f}. Figure out the original number, time starts now!")
 
 
 def main():
     starting_num = random.randint(MIN_START, MAX_OPERAND)
-    print(starting_num)
     start_time = time.time()
     ind_turn(starting_num)
     ans = int(input("Enter your answer here (num): "))
